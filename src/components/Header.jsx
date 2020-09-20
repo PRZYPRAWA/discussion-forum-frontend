@@ -3,16 +3,24 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 const HeaderContainer = styled.header`
-  font-size: 72px;
   color: #fefefe;
-  height: 100px;
   background: #262626;
-  padding-left: 40px;
-  padding-top: 14px;
+  padding: 1em 3em 0;
+  display: flex;
+  align-items: center;
+`;
+
+const Title = styled.span`
+  font-size: 72px;
+  margin: 0;
 `;
 
 const Header = ({ title }) => {
-  return <HeaderContainer>{title}</HeaderContainer>;
+  return (
+    <HeaderContainer>
+      <Title>{title}</Title>
+    </HeaderContainer>
+  );
 };
 
 export default Header;

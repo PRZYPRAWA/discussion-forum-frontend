@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const StyledInput = styled.input`
+const Input = styled.input`
   background: #bfbfbf;
   width: 80%;
   height: 60%;
@@ -12,7 +12,7 @@ const StyledInput = styled.input`
   box-sizing: border-box;
 `;
 
-const StyledInputContainer = styled.div`
+const Wrapper = styled.div`
   grid-column: 2 / 3;
   grid-row: 1 / 2;
   background: #f2f2f2;
@@ -20,15 +20,14 @@ const StyledInputContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 1em;
 `;
 
-const AddTopic = ({ placeholder }) => {
-  return (
-    <StyledInputContainer>
-      <StyledInput placeholder={placeholder} />
-    </StyledInputContainer>
-  );
-};
+const AddTopic = ({ placeholder }) => (
+  <Wrapper>
+    <Input placeholder={placeholder} />
+  </Wrapper>
+);
 
 export default AddTopic;
 
