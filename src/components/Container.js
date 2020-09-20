@@ -6,7 +6,8 @@ const StyledContainer = styled.div`
   background: #f2f2f2;
   border-radius: 10px;
   min-width: ${({ minWidth }) => minWidth};
-  margin: 50px;
+  grid-column: ${({ gridCol }) => gridCol};
+  grid-row: ${({ gridRow }) => gridRow};
 `;
 
 const StyledContainerHeader = styled.div`
@@ -18,9 +19,9 @@ const StyledContainerHeader = styled.div`
   padding: calc(calc(var(--containerHeaderHeight) - 25px) / 2);
 `;
 
-const Container = ({ title, content, minWidth }) => {
+const Container = ({ title, content, minWidth, gridCol, gridRow }) => {
   return (
-    <StyledContainer minWidth={minWidth}>
+    <StyledContainer minWidth={minWidth} gridCol={gridCol} gridRow={gridRow}>
       <StyledContainerHeader>{title}</StyledContainerHeader>
       {content}
     </StyledContainer>

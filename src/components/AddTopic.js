@@ -4,27 +4,32 @@ import PropTypes from "prop-types";
 
 const StyledInput = styled.input`
   background: #bfbfbf;
-  width: 80%;
+  width: 90%;
   height: 60%;
   padding: 12px 20px;
   margin: 0 auto;
   border: 0;
   box-sizing: border-box;
+
+  &::placeholder {
+    text-size: 1.5em;
+    color: black;
+  }
 `;
 
 const StyledInputContainer = styled.div`
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
   background: #f2f2f2;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  grid-column: ${({ gridCol }) => gridCol};
+  grid-row: ${({ gridRow }) => gridRow};
 `;
 
-const AddTopic = ({ placeholder }) => {
+const AddTopic = ({ placeholder, gridCol, gridRow }) => {
   return (
-    <StyledInputContainer>
+    <StyledInputContainer gridCol={gridCol} gridRow={gridRow}>
       <StyledInput placeholder={placeholder} />
     </StyledInputContainer>
   );

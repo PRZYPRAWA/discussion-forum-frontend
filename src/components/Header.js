@@ -6,6 +6,7 @@ const HeaderContainer = styled.header`
   font-size: 72px;
   color: #fefefe;
   height: 100px;
+  width: 100%;
   background: #262626;
   padding-left: 40px;
   padding-top: 14px;
