@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Header from "components/Header";
-import Container from "components/Container";
-import AddTopic from "components/AddTopic";
+import Header from "./components/Header";
+import Container from "./components/Container";
+import AddTopic from "./components/AddTopic";
+import StyledList from "./components/List";
+import Topic from "./components/Topic";
 import styled from "styled-components";
 import colors from "./utils/colors";
 
@@ -34,6 +36,10 @@ const MainContent = styled(Section)`
 
 const Sidebar = styled(Section)`
   min-width: 300px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const App = () => {
@@ -49,9 +55,6 @@ const App = () => {
           setIsLoaded(true);
           setItems(result);
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           setIsLoaded(true);
           setError(error);
@@ -65,14 +68,19 @@ const App = () => {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
+      console.table(items);
       return (
-        <ul>
-          {items.map((item) => (
-            <li key={item.id}>
-              {item.topic} {item.created}
-            </li>
+        <StyledList>
+          {items.slice(0, 9).map((item) => (
+            <Topic
+              key={item.id}
+              topic={item.topic}
+              created={item.created}
+              createdBy={item.created_by}
+              lastResponse={item.last_response}
+            />
           ))}
-        </ul>
+        </StyledList>
       );
     }
   };
