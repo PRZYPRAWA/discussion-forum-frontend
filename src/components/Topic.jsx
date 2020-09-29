@@ -23,10 +23,6 @@ const LastResponse = styled.div`
   position: absolute;
   right: 10px;
   top: 5px;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
 `;
 
 function formatDate(date) {
