@@ -8,9 +8,19 @@ const StyledTopic = styled.li`
   flex-grow: 1;
   text-decoration: none;
   height: 50px;
-  border-top 1px solid black;
+  border-top 1px solid ${colors.dark};
   padding: 1% 2%;
   position: relative;
+  transition: .2s ease;
+
+  :hover {
+    background: ${colors.light_gray};
+  }
+`;
+
+const StyledA = styled.a`
+  text-decoration: none;
+  color: ${colors.dark};
 `;
 
 const Author = styled.div`
@@ -48,7 +58,7 @@ function formatDate(date) {
 const Topic = ({ topic, created, createdBy, lastResponse }) => {
   return (
     <StyledTopic>
-      <div>{topic}</div>
+      <StyledA href="#">{topic}</StyledA>
       <Author>
         By {createdBy}, {formatDate(created)}
       </Author>

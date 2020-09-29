@@ -16,6 +16,10 @@ const Button = styled.button`
       background: ${colors.blue};
       color: white;
     `};
+
+  :focus {
+    outline-color: ${colors.dark};
+  }
 `;
 
 export default Button;
