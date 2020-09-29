@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import colors from "../utils/colors";
 
-const Button = styled.button`
+const StyledButton = styled.button`
   background: transparent;
   border-radius: 3px;
   border: 2px solid ${colors.blue};
@@ -22,4 +22,4 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export default StyledButton;

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import Button from "./Button";
+import StyledButton from "./Button";
 import colors from "../utils/colors";
 
-const Input = styled.input`
+const StyledInput = styled.input`
   background: ${colors.gray};
   width: 90%;
   height: 1em;
@@ -17,9 +17,13 @@ const Input = styled.input`
     text-size: 1.5em;
     color: black;
   }
+
+  :focus {
+    outline-color: ${colors.blue};
+  }
 `;
 
-const TextArea = styled.textarea`
+const StyledTextArea = styled.textarea`
   background: ${colors.gray};
   width: 90%;
   height: 70%;
@@ -32,6 +36,10 @@ const TextArea = styled.textarea`
   &::placeholder {
     text-size: 1.5em;
     color: black;
+  }
+
+  :focus {
+    outline-color: ${colors.blue};
   }
 `;
 
@@ -63,15 +71,20 @@ const AddTopic = ({
 
   return (
     <Wrapper>
-      <Input placeholder={placeholder1} onClick={() => setIsFocus(true)} />
+      <StyledInput
+        placeholder={placeholder1}
+        onClick={() => setIsFocus(true)}
+      />
       {isFocus && (
         <>
-          <TextArea placeholder={placeholder2} />
-          <Input placeholder={placeholder3} />
-          <Input placeholder={placeholder4} />
+          <StyledTextArea placeholder={placeholder2} />
+          <StyledInput placeholder={placeholder3} />
+          <StyledInput placeholder={placeholder4} />
           <ButtonsWrapper>
-            <Button primary>Add</Button>
-            <Button onClick={() => setIsFocus(false)}>Cancel</Button>
+            <StyledButton primary>Add</StyledButton>
+            <StyledButton onClick={() => setIsFocus(false)}>
+              Cancel
+            </StyledButton>
           </ButtonsWrapper>
         </>
       )}
