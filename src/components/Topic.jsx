@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import colors from "../utils/colors";
 
@@ -7,7 +7,7 @@ const StyledTopic = styled.li`
   background: ${colors.very_light_gray};
   flex-grow: 1;
   text-decoration: none;
-  height: 50px;
+  height: 3em;
   border-top 1px solid ${colors.dark};
   padding: 1% 2%;
   position: relative;
@@ -15,6 +15,10 @@ const StyledTopic = styled.li`
 
   :hover {
     background: ${colors.light_gray};
+  }
+
+  @media (max-width: 600px) {
+    height: 4em;
   }
 `;
 
@@ -33,6 +37,16 @@ const LastResponse = styled.div`
   position: absolute;
   right: 10px;
   top: 5px;
+
+  ${({ shrink }) =>
+    shrink &&
+    css`
+      position: static;
+    `};
+
+  @media (max-width: 600px) {
+    position: static;
+  }
 `;
 
 function formatDate(date) {
@@ -55,16 +69,23 @@ function formatDate(date) {
   )}`;
 }
 
-const Topic = ({ topic, created, createdBy, lastResponse }) => {
+const Topic = ({ topic, created, createdBy, lastResponse, shrink }) => {
   return (
-    <StyledTopic>
+    <StyledTopic shrink={shrink}>
       <StyledA href="#">{topic}</StyledA>
-      <Author>
-        By {createdBy}, {formatDate(created)}
-      </Author>
-      <LastResponse>Last response: {formatDate(lastResponse)}</LastResponse>
+      <Author>{shrink || `By ${createdBy}, ${formatDate(created)}`}</Author>
+      <LastResponse shrink={shrink}>
+        Last response: {formatDate(lastResponse)}
+      </LastResponse>
     </StyledTopic>
   );
 };
 
 export default Topic;
+
+Topic.propTypes = {
+  topic: PropTypes.string.isRequired,
+  created: PropTypes.string.isRequired,
+  createdBy: PropTypes.string.isRequired,
+  lastResponse: PropTypes.string.isRequired,
+};

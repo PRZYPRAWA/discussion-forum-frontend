@@ -62,7 +62,7 @@ const App = () => {
       );
   }, []);
 
-  const renderTopics = () => {
+  const renderTopics = (shrink = false) => {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -78,6 +78,7 @@ const App = () => {
               created={item.created}
               createdBy={item.created_by}
               lastResponse={item.last_response}
+              shrink={shrink}
             />
           ))}
         </StyledList>
@@ -99,7 +100,7 @@ const App = () => {
           <Container title="Topics">{renderTopics()}</Container>
         </MainContent>
         <Sidebar>
-          <Container title="Popular">CONTENT</Container>
+          <Container title="Popular">{renderTopics(true)}</Container>
         </Sidebar>
       </Body>
     </Main>

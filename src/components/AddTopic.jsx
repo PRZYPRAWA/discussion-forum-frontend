@@ -33,7 +33,7 @@ const StyledTextArea = styled.textarea`
   box-sizing: border-box;
   resize: vertical;
 
-  &::placeholder {
+  ::placeholder {
     text-size: 1.5em;
     color: black;
   }
@@ -95,5 +95,8 @@ const AddTopic = ({
 export default AddTopic;
 
 AddTopic.propTypes = {
-  placeholder: PropTypes.string,
+  placeholder1: PropTypes.string,
+  placeholder2: PropTypes.string,
+  placeholder3: PropTypes.string,
+  placeholder4: PropTypes.string,
 };

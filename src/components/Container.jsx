@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import colors from "../utils/colors";
 
 const Wrapper = styled.div`
-  background: ${colors.very_light_gray};
+  // background: ${colors.very_light_gray};
   border-radius: 1em;
   overflow: hidden;
   flex-grow: 1;
@@ -29,5 +29,4 @@ export default Container;
 Container.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
-  flex: PropTypes.string,
 };
