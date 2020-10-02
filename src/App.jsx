@@ -6,6 +6,7 @@ import StyledList from "./components/List";
 import Topic from "./components/Topic";
 import styled from "styled-components";
 import colors from "./utils/colors";
+import { getTopics } from "./methods/methods";
 
 const Main = styled.main`
   min-height: 100%;
@@ -48,18 +49,7 @@ const App = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("/topics")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    getTopics(setItems, setIsLoaded, setError);
   }, []);
 
   const renderTopics = (shrink = false) => {
@@ -68,7 +58,6 @@ const App = () => {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
-      console.table(items);
       return (
         <StyledList>
           {items.slice(0, 9).map((item) => (

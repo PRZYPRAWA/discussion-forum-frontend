@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import PropTypes from "prop-types";
 import StyledButton from "./Button";
 import colors from "../utils/colors";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
+import { postTopic } from "../methods/methods";
 
 const StyledInput = styled.input`
   background: ${colors.gray};
@@ -55,6 +55,7 @@ const StyledForm = styled(Form)`
   justify-content: space-around;
   align-items: center;
   margin-bottom: 1em;
+  box-shadow: 1px 1px 2px ${colors.gray};
 
   .error {
     font-size: 12px;
@@ -97,16 +98,10 @@ const TextArea = ({ label, ...props }) => {
   );
 };
 
-const postTopic = (values) => {
-  fetch("/topics", {
-    method: "POST",
-    body: JSON.stringify(values),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-    },
-  })
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+const CONSTANTS = {
+  topicMax: 200,
+  contentMax: 2000,
+  usernameMax: 50,
 };
 
 const AddTopicForm = () => {
@@ -122,13 +117,13 @@ const AddTopicForm = () => {
       initialValues={initialValues}
       validationSchema={Yup.object({
         topic: Yup.string()
-          .max(200, "Must be 200 characters or less")
+          .max(CONSTANTS.topicMax, "Must be 200 characters or less")
           .required("Required"),
         content: Yup.string()
-          .max(2000, "Must be 2000 characters or less")
+          .max(CONSTANTS.contentMax, "Must be 2000 characters or less")
           .required("Required"),
         username: Yup.string()
-          .max(50, "Must be 50 characters or less")
+          .max(CONSTANTS.usernameMax, "Must be 50 characters or less")
           .required("Required"),
         email: Yup.string()
           .email("Invalid email addresss`")
@@ -138,7 +133,6 @@ const AddTopicForm = () => {
         await postTopic(values);
         setSubmitting(false);
         resetForm(initialValues);
-        console.log(JSON.stringify(values, null, 2));
       }}
       onReset={() => {
         setIsFocus(false);

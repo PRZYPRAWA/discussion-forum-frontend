@@ -8,7 +8,7 @@ const StyledTopic = styled.li`
   flex-grow: 1;
   text-decoration: none;
   height: 3em;
-  border-top 1px solid ${colors.dark};
+  border-top 1.5px solid ${colors.gray};
   padding: 1% 2%;
   position: relative;
   transition: .2s ease;
@@ -71,7 +71,7 @@ function formatDate(date) {
 
 const Topic = ({ topic, created, createdBy, lastResponse, shrink }) => {
   return (
-    <StyledTopic shrink={shrink}>
+    <StyledTopic>
       <StyledA href="#">{topic}</StyledA>
       <Author>{shrink || `By ${createdBy}, ${formatDate(created)}`}</Author>
       <LastResponse shrink={shrink}>
@@ -88,4 +88,5 @@ Topic.propTypes = {
   created: PropTypes.string.isRequired,
   createdBy: PropTypes.string.isRequired,
   lastResponse: PropTypes.string.isRequired,
+  shrink: PropTypes.bool,
 };

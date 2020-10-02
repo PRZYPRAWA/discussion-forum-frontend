@@ -4,10 +4,9 @@ import PropTypes from "prop-types";
 import colors from "../utils/colors";
 
 const Wrapper = styled.div`
-  // background: ${colors.very_light_gray};
   border-radius: 1em;
   overflow: hidden;
-  flex-grow: 1;
+  box-shadow: 1px 1px 2px ${colors.gray};
 `;
 
 const Header = styled.div`
