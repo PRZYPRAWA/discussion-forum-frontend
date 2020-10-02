@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./components/Header";
 import Container from "./components/Container";
-import AddTopic from "./components/AddTopic";
+import AddTopicForm from "./components/AddTopicForm";
 import StyledList from "./components/List";
 import Topic from "./components/Topic";
 import styled from "styled-components";
@@ -91,7 +91,7 @@ const App = () => {
       <Header title="Forum" />
       <Body>
         <MainContent>
-          <AddTopic
+          <AddTopicForm
             placeholder1="Add Topic"
             placeholder2="Content"
             placeholder3="Username"
