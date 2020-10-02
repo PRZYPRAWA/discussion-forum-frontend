@@ -97,6 +97,18 @@ const TextArea = ({ label, ...props }) => {
   );
 };
 
+const postTopic = (values) => {
+  fetch("/topics", {
+    method: "POST",
+    body: JSON.stringify(values),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+};
+
 const AddTopicForm = () => {
   const [isFocus, setIsFocus] = useState(false);
   const initialValues = {
@@ -123,13 +135,12 @@ const AddTopicForm = () => {
           .required("Required"),
       })}
       onSubmit={async (values, { setSubmitting, resetForm }) => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await postTopic(values);
         setSubmitting(false);
         resetForm(initialValues);
         console.log(JSON.stringify(values, null, 2));
       }}
-      onReset={async () => {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+      onReset={() => {
         setIsFocus(false);
       }}
     >
