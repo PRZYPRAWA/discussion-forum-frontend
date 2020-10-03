@@ -99,9 +99,7 @@ const TextArea = ({ label, ...props }) => {
     <>
       <label htmlFor={props.id || props.name}>{label}</label>
       <StyledTextArea className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
+      {meta.touched && meta.error ? <FormError>{meta.error}</FormError> : null}
     </>
   );
 };
