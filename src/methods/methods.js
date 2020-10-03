@@ -1,5 +1,10 @@
-export const getTopics = (setItems, setIsLoaded, setError) => {
-  fetch("/topics")
+export const getTopics = (limit = 50, offset = 0) => (
+  setItems,
+  setIsLoaded,
+  setError
+) => {
+  const parameters = `?limit=${limit}&offset=${offset}`;
+  fetch(`/topics${parameters}`)
     .then((res) => res.json())
     .then(
       (result) => {

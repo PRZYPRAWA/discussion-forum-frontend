@@ -24,6 +24,14 @@ const StyledInput = styled.input`
   :focus {
     outline-color: ${colors.blue};
   }
+
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus,
+  :-webkit-autofill:active {
+    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+    -webkit-transition-delay: 9999s;
+  }
 `;
 
 const StyledTextArea = styled.textarea`
@@ -56,12 +64,14 @@ const StyledForm = styled(Form)`
   align-items: center;
   margin-bottom: 1em;
   box-shadow: 1px 1px 2px ${colors.gray};
+`;
 
-  .error {
-    font-size: 12px;
-    color: red;
-    margin-top: 0.25rem;
-  }
+const FormError = styled.div`
+  font-size: 12px;
+  color: red;
+  margin-top: 0.1rem;
+  padding-left: 2rem;
+  align-self: flex-start;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -78,9 +88,7 @@ const TextInput = ({ label, ...props }) => {
     <>
       <label htmlFor={props.id || props.name}>{label}</label>
       <StyledInput className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="error">{meta.error}</div>
-      ) : null}
+      {meta.touched && meta.error ? <FormError>{meta.error}</FormError> : null}
     </>
   );
 };
@@ -104,7 +112,7 @@ const CONSTANTS = {
   usernameMax: 50,
 };
 
-const AddTopicForm = () => {
+const AddTopicForm = ({ posted, setPosted }) => {
   const [isFocus, setIsFocus] = useState(false);
   const initialValues = {
     topic: "",
@@ -133,6 +141,7 @@ const AddTopicForm = () => {
         await postTopic(values);
         setSubmitting(false);
         resetForm(initialValues);
+        setPosted(!posted);
       }}
       onReset={() => {
         setIsFocus(false);
