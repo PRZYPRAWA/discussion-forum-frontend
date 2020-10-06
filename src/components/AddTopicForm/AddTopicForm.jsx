@@ -71,13 +71,13 @@ const AddTopicForm = ({ posted, setPosted }) => {
       initialValues={initialValues}
       validationSchema={Yup.object({
         topic: Yup.string()
-          .max(constants.topicMax, "Must be 200 characters or less")
+          .max(constants.TOPIC_MAX, "Must be 200 characters or less")
           .required("Required"),
         content: Yup.string()
-          .max(constants.contentMax, "Must be 2000 characters or less")
+          .max(constants.CONTENT_MAX, "Must be 2000 characters or less")
           .required("Required"),
         username: Yup.string()
-          .max(constants.usernameMax, "Must be 50 characters or less")
+          .max(constants.USERNAME_MAX, "Must be 50 characters or less")
           .required("Required"),
         email: Yup.string()
           .email("Invalid email addresss`")
