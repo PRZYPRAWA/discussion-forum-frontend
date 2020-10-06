@@ -1,4 +1,4 @@
-import GlobalStyles from "components/GlobalStyles";
+import GlobalStyles from "components/GlobalStyles/GlobalStyles";
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";

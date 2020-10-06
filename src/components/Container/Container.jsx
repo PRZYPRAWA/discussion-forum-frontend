@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import colors from "../utils/colors";
+import colors from "../../utils/colors";
 
 const Wrapper = styled.div`
   border-radius: 1em;

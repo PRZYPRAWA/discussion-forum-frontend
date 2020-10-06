@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import colors from "../utils/colors";
+import colors from "../../utils/colors";
 
-const Error = styled.div`
+const Loading = styled.div`
   background: ${colors.very_light_gray};
   flex-grow: 1;
   height: 3em;
@@ -17,4 +17,4 @@ const Error = styled.div`
   }
 `;
 
-export default Error;
+export default Loading;

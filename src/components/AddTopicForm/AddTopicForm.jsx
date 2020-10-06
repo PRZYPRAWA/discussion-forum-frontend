@@ -1,59 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import StyledButton from "./Button";
-import colors from "../utils/colors";
+import StyledButton from "../Button/Button";
+import StyledInput from "../Input/StyledInput";
+import StyledTextArea from "../TextArea/StyledTextArea";
+import colors from "../../utils/colors";
 import { Formik, Form, useField } from "formik";
 import * as Yup from "yup";
-import { postTopic } from "../methods/methods";
-
-const StyledInput = styled.input`
-  background: ${colors.gray};
-  width: 90%;
-  height: 1em;
-  padding: 12px 20px;
-  margin: 1% auto;
-  border: 0;
-  box-sizing: border-box;
-  border-radius: 10px;
-
-  ::placeholder {
-    text-size: 1.5em;
-    color: black;
-  }
-
-  :focus {
-    outline-color: ${colors.blue};
-  }
-
-  :-webkit-autofill,
-  :-webkit-autofill:hover,
-  :-webkit-autofill:focus,
-  :-webkit-autofill:active {
-    -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
-    -webkit-transition-delay: 9999s;
-  }
-`;
-
-const StyledTextArea = styled.textarea`
-  background: ${colors.gray};
-  width: 90%;
-  height: 70%;
-  padding: 12px 20px;
-  margin: 1% auto;
-  border: 0;
-  box-sizing: border-box;
-  resize: vertical;
-  border-radius: 10px;
-
-  ::placeholder {
-    text-size: 1.5em;
-    color: black;
-  }
-
-  :focus {
-    outline-color: ${colors.blue};
-  }
-`;
+import { postTopic } from "../../methods/methods";
+import { constants } from "../../constants/constants";
 
 const StyledForm = styled(Form)`
   background: ${colors.very_light_gray};
@@ -104,12 +58,6 @@ const TextArea = ({ label, ...props }) => {
   );
 };
 
-const CONSTANTS = {
-  topicMax: 200,
-  contentMax: 2000,
-  usernameMax: 50,
-};
-
 const AddTopicForm = ({ posted, setPosted }) => {
   const [isFocus, setIsFocus] = useState(false);
   const initialValues = {
@@ -123,13 +71,13 @@ const AddTopicForm = ({ posted, setPosted }) => {
       initialValues={initialValues}
       validationSchema={Yup.object({
         topic: Yup.string()
-          .max(CONSTANTS.topicMax, "Must be 200 characters or less")
+          .max(constants.topicMax, "Must be 200 characters or less")
           .required("Required"),
         content: Yup.string()
-          .max(CONSTANTS.contentMax, "Must be 2000 characters or less")
+          .max(constants.contentMax, "Must be 2000 characters or less")
           .required("Required"),
         username: Yup.string()
-          .max(CONSTANTS.usernameMax, "Must be 50 characters or less")
+          .max(constants.usernameMax, "Must be 50 characters or less")
           .required("Required"),
         email: Yup.string()
           .email("Invalid email addresss`")
