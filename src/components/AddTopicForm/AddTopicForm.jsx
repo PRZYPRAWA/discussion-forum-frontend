@@ -107,7 +107,7 @@ const AddTopicForm = ({ posted, setPosted }) => {
             <TextInput name="email" type="email" placeholder="E-mail" />
             <ButtonsWrapper>
               <StyledButton primary type="submit">
-                Add
+                Submit
               </StyledButton>
               <StyledButton type="reset">Cancel</StyledButton>
             </ButtonsWrapper>

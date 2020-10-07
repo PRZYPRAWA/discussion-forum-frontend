@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import colors from "../../utils/colors";
 import formatDate from "../../utils/formatDate";
+import StyledLink from "../StyledLink/StyledLink";
 
 const StyledTopic = styled.li`
   background: ${colors.very_light_gray};
@@ -21,11 +22,6 @@ const StyledTopic = styled.li`
   @media (max-width: 600px) {
     height: 4em;
   }
-`;
-
-const StyledA = styled.a`
-  text-decoration: none;
-  color: ${colors.dark};
 `;
 
 const Author = styled.div`
@@ -53,7 +49,9 @@ const LastResponse = styled.div`
 const Topic = ({ topic, created, createdBy, lastResponse, shrink }) => {
   return (
     <StyledTopic>
-      <StyledA href="#">{topic}</StyledA>
+      <StyledLink color={colors.dark} to={`/topics/${topic}`}>
+        {topic}
+      </StyledLink>
       <Author>{shrink || `By ${createdBy}, ${formatDate(created)}`}</Author>
       <LastResponse shrink={shrink}>
         Last response: {formatDate(lastResponse)}
