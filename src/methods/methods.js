@@ -1,4 +1,6 @@
-export const getTopics = (limit = 50, offset = 0) => (
+import { constants } from "../constants/constants";
+
+export const getTopics = (limit = constants.LIMIT, offset = 0) => (
   setItems,
   setIsLoaded,
   setError
@@ -8,12 +10,12 @@ export const getTopics = (limit = 50, offset = 0) => (
     .then((res) => res.json())
     .then(
       (result) => {
-        setIsLoaded(true);
         setItems(result);
+        setIsLoaded(true);
       },
       (error) => {
-        setIsLoaded(true);
         setError(error);
+        setIsLoaded(true);
       }
     );
 };
@@ -28,4 +30,26 @@ export const postTopic = (values) => {
   })
     .then((response) => response.json())
     .then((json) => console.log(json));
+};
+
+export const getTopicWithPosts = (id) => (
+  before = constants.BEFORE,
+  after = constants.AFTER,
+  offset = 0
+) => (setItems, setIsLoaded, setError) => {
+  const parameters = `offset=${offset}&before=${before}&after=${after}`;
+
+  fetch(`/topics/${id}?${parameters}`)
+    .then((response) => response.json())
+    .then(
+      (result) => {
+        console.log(result);
+        setItems(result);
+        setIsLoaded(true);
+      },
+      (error) => {
+        setError(error);
+        setIsLoaded(true);
+      }
+    );
 };

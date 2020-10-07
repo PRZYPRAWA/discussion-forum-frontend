@@ -5,35 +5,8 @@ import StyledList from "../components/List/List";
 import Topic from "../components/Topic/Topic";
 import Error from "../components/Error/Error";
 import Loading from "../components/Loading/Loading";
-import styled from "styled-components";
 import { getTopics } from "../methods/methods";
-
-const Body = styled.div`
-  display: flex;
-  padding: 1em;
-  flex-grow: 1;
-  width: 100%;
-  max-width: 1000px;
-  margin: auto;
-`;
-
-const Section = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 1em;
-`;
-
-const MainContent = styled(Section)`
-  flex-grow: 1;
-`;
-
-const Sidebar = styled(Section)`
-  min-width: 300px;
-
-  @media (max-width: 768px) {
-    display: none;
-  }
-`;
+import { Body, MainContent, Sidebar } from "../layout/Layout";
 
 const MainPage = () => {
   const [error, setError] = useState(null);
@@ -63,6 +36,7 @@ const MainPage = () => {
             .map((item) => (
               <Topic
                 key={item.id}
+                topicId={item.id}
                 topic={item.topic}
                 created={item.created}
                 createdBy={item.created_by}
@@ -74,22 +48,21 @@ const MainPage = () => {
       );
     }
   };
+
   return (
-    <>
-      <Body>
-        <MainContent>
-          <AddTopicForm posted={posted} setPosted={setPosted} />
-          <Container title="Topics" to="/topics">
-            {renderTopics()}
-          </Container>
-        </MainContent>
-        <Sidebar>
-          <Container title="Popular" to="/popular">
-            {renderTopics(true)}
-          </Container>
-        </Sidebar>
-      </Body>
-    </>
+    <Body>
+      <MainContent>
+        <AddTopicForm posted={posted} setPosted={setPosted} />
+        <Container title="Topics" to="/topics">
+          {renderTopics()}
+        </Container>
+      </MainContent>
+      <Sidebar>
+        <Container title="Popular" to="/popular">
+          {renderTopics(true)}
+        </Container>
+      </Sidebar>
+    </Body>
   );
 };
 

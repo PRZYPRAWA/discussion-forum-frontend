@@ -1,5 +1,8 @@
+import React from "react";
 import styled from "styled-components";
 import colors from "../../utils/colors";
+import { useField } from "formik";
+import FormError from "../FormError/FormError";
 
 const StyledInput = styled.input`
   background: ${colors.gray};
@@ -29,4 +32,15 @@ const StyledInput = styled.input`
   }
 `;
 
-export default StyledInput;
+const TextInput = ({ label, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <>
+      <label htmlFor={props.id || props.name}>{label}</label>
+      <StyledInput {...field} {...props} />
+      {meta.touched && meta.error ? <FormError>{meta.error}</FormError> : null}
+    </>
+  );
+};
+
+export default TextInput;

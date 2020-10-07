@@ -9,6 +9,7 @@ const StyledTopic = styled.li`
   background: ${colors.very_light_gray};
   flex-grow: 1;
   text-decoration: none;
+  list-style-type: none;
   height: 3em;
   border-top 1.5px solid ${colors.gray};
   padding: 1% 2%;
@@ -46,16 +47,25 @@ const LastResponse = styled.div`
   }
 `;
 
-const Topic = ({ topic, created, createdBy, lastResponse, shrink }) => {
+const Topic = ({
+  topicId,
+  topic,
+  created,
+  createdBy,
+  lastResponse,
+  shrink,
+}) => {
   return (
     <StyledTopic>
-      <StyledLink color={colors.dark} to={`/topics/${topic}`}>
+      <StyledLink color={colors.dark} to={`/topics/${topicId}`}>
         {topic}
       </StyledLink>
       <Author>{shrink || `By ${createdBy}, ${formatDate(created)}`}</Author>
-      <LastResponse shrink={shrink}>
-        Last response: {formatDate(lastResponse)}
-      </LastResponse>
+      {lastResponse && (
+        <LastResponse shrink={shrink}>
+          Last response: {formatDate(lastResponse)}
+        </LastResponse>
+      )}
     </StyledTopic>
   );
 };
@@ -66,6 +76,6 @@ Topic.propTypes = {
   topic: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
   createdBy: PropTypes.string.isRequired,
-  lastResponse: PropTypes.string.isRequired,
+  lastResponse: PropTypes.string,
   shrink: PropTypes.bool,
 };

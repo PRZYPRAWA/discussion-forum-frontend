@@ -20,9 +20,13 @@ const Header = styled.div`
 const Container = ({ title, children, to }) => (
   <Wrapper>
     <Header>
-      <StyledLink color={colors.white} to={to}>
-        {title}
-      </StyledLink>
+      {title ? (
+        <StyledLink color={colors.white} to={to}>
+          {title}
+        </StyledLink>
+      ) : (
+        <>{title}</>
+      )}
     </Header>
     {children}
   </Wrapper>

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import StyledButton from "../Button/Button";
-import StyledInput from "../Input/StyledInput";
-import StyledTextArea from "../TextArea/StyledTextArea";
+import TextInput from "../TextInput/TextInput";
+import TextArea from "../TextArea/TextArea";
 import colors from "../../utils/colors";
-import { Formik, Form, useField } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { postTopic } from "../../methods/methods";
 import { constants } from "../../constants/constants";
@@ -20,14 +20,6 @@ const StyledForm = styled(Form)`
   box-shadow: 1px 1px 2px ${colors.gray};
 `;
 
-const FormError = styled.div`
-  font-size: 12px;
-  color: red;
-  margin-top: 0.1rem;
-  padding-left: 2rem;
-  align-self: flex-start;
-`;
-
 const ButtonsWrapper = styled.div`
   align-self: flex-end;
   display: flex;
@@ -35,28 +27,6 @@ const ButtonsWrapper = styled.div`
   justify-content: flex-end;
   width: 30%;
 `;
-
-const TextInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <StyledInput className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? <FormError>{meta.error}</FormError> : null}
-    </>
-  );
-};
-
-const TextArea = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label}</label>
-      <StyledTextArea className="text-input" {...field} {...props} />
-      {meta.touched && meta.error ? <FormError>{meta.error}</FormError> : null}
-    </>
-  );
-};
 
 const AddTopicForm = ({ posted, setPosted }) => {
   const [isFocus, setIsFocus] = useState(false);
