@@ -1,6 +1,7 @@
 import { constants } from "../constants/constants";
 
 export const getTopics = (limit = constants.LIMIT, offset = 0) => (
+  items,
   setItems,
   setIsLoaded,
   setError
@@ -10,7 +11,7 @@ export const getTopics = (limit = constants.LIMIT, offset = 0) => (
     .then((res) => res.json())
     .then(
       (result) => {
-        setItems(result);
+        setItems([...items, ...result]);
         setIsLoaded(true);
       },
       (error) => {

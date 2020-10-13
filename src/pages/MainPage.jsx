@@ -8,6 +8,7 @@ import Error from "../components/Error/Error";
 import Loading from "../components/Loading/Loading";
 import styled from "styled-components";
 import { getTopics } from "../methods/methods";
+import { constants } from "../constants/constants";
 import { Body, MainContent, Sidebar } from "../layout/Layout";
 
 const StyledButton = styled(Button)`
@@ -22,10 +23,28 @@ const MainPage = () => {
   const [loadTopics, setLoadTopics] = useState(false);
 
   useEffect(() => {
-    getTopics()(setItems, setIsLoaded, setError);
+    getTopics()([], setItems, setIsLoaded, setError);
   }, [posted]);
 
-  const renderTopics = (shrink = false, sort = false) => {
+  useEffect(() => {
+    if (loadTopics) {
+      getTopics(constants.LIMIT, constants.LIMIT + 1)(
+        items,
+        setItems,
+        setIsLoaded,
+        setError
+      );
+
+      setLoadTopics(false);
+    }
+  }, [loadTopics]);
+
+  const renderTopics = (
+    shrink = false,
+    sort = false,
+    sidebar = false,
+    limit = constants.LIMIT
+  ) => {
     function compare(a, b) {
       return b.created - a.created;
     }
@@ -35,9 +54,22 @@ const MainPage = () => {
     } else if (!isLoaded) {
       return <Loading>Loading...</Loading>;
     } else {
-      return (
-        <StyledList>
-          {items
+      const topics = sidebar
+        ? items
+            .sort((a, b) => (sort ? compare(a, b) : 0))
+            .slice(0, limit)
+            .map((item) => (
+              <Topic
+                key={item.id}
+                topicId={item.id}
+                topic={item.topic}
+                created={item.created}
+                createdBy={item.created_by}
+                lastResponse={item.last_response}
+                shrink={shrink}
+              />
+            ))
+        : items
             .sort((a, b) => (sort ? compare(a, b) : 0))
             .map((item) => (
               <Topic
@@ -49,9 +81,9 @@ const MainPage = () => {
                 lastResponse={item.last_response}
                 shrink={shrink}
               />
-            ))}
-        </StyledList>
-      );
+            ));
+
+      return <StyledList>{topics}</StyledList>;
     }
   };
 
@@ -67,7 +99,9 @@ const MainPage = () => {
         )}
       </MainContent>
       <Sidebar>
-        <Container title="Popular">{renderTopics(true)}</Container>
+        <Container title="Popular">
+          {renderTopics(true, true, true, 10)}
+        </Container>
       </Sidebar>
     </Body>
   );
