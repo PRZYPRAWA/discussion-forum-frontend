@@ -23,10 +23,7 @@ const MainPage = () => {
 
   useEffect(() => {
     getTopics()(setItems, setIsLoaded, setError);
-    console.log(loadTopics);
-    if (loadTopics) {
-    }
-  }, [posted, loadTopics]);
+  }, [posted]);
 
   const renderTopics = (shrink = false, sort = false) => {
     function compare(a, b) {
@@ -63,9 +60,11 @@ const MainPage = () => {
       <MainContent>
         <AddTopicForm posted={posted} setPosted={setPosted} />
         <Container title="Topics">{renderTopics((false, true))}</Container>
-        <StyledButton onClick={() => setLoadTopics(!loadTopics)}>
-          Load more
-        </StyledButton>
+        {isLoaded && (
+          <StyledButton onClick={() => setLoadTopics(!loadTopics)}>
+            Load more
+          </StyledButton>
+        )}
       </MainContent>
       <Sidebar>
         <Container title="Popular">{renderTopics(true)}</Container>

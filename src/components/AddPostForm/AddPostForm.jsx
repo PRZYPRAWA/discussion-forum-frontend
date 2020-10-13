@@ -15,7 +15,7 @@ const StyledForm = styled(Form)`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  padding-top: 1em;
+  padding-top: 0.5em;
 `;
 
 const ButtonsWrapper = styled.div`

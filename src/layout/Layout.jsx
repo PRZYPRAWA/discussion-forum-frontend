@@ -16,7 +16,7 @@ export const Section = styled.div`
 
 export const MainContent = styled(Section)`
   flex-grow: 1;
-  max-width: 600px;
+  min-width: 200px;
 `;
 
 export const Sidebar = styled(Section)`

@@ -38,7 +38,6 @@ const TopicPage = ({ topicId, rules }) => {
             created={topic.created}
             createdBy={topic.created_by}
             shrink={shrink}
-            overflow="auto"
           />
 
           <AddPostForm
@@ -65,7 +64,7 @@ const TopicPage = ({ topicId, rules }) => {
   return (
     <Body>
       <MainContent>
-        <Container to="/">{renderTopicWithPosts()}</Container>
+        <Container to="/">{renderTopicWithPosts(true)}</Container>
       </MainContent>
       <Sidebar>
         <Rules rules={rules}></Rules>

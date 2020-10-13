@@ -21,6 +21,8 @@ const StyledTopic = styled.li`
   padding: 1% 2%;
   position: relative;
   transition: .2s ease;
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 600px) {
     height: 4em;
@@ -34,19 +36,6 @@ const Author = styled.div`
 
 const LastResponse = styled.div`
   font-size: 0.8em;
-  position: absolute;
-  right: 10px;
-  top: 5px;
-
-  ${({ shrink }) =>
-    shrink &&
-    css`
-      position: static;
-    `};
-
-  @media (max-width: 600px) {
-    position: static;
-  }
 `;
 
 const Topic = ({
@@ -62,7 +51,7 @@ const Topic = ({
       <StyledLink color={colors.dark} to={`/topics/${topicId}`}>
         <StyledParagraph>{topic}</StyledParagraph>
       </StyledLink>
-      <Author>{shrink || `By ${createdBy}, ${formatDate(created)}`}</Author>
+      <Author>{shrink && `By ${createdBy}, ${formatDate(created)}`}</Author>
       {lastResponse && (
         <LastResponse shrink={shrink}>
           Last response: {formatDate(lastResponse)}

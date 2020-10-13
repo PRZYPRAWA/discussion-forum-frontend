@@ -2,3 +2,6 @@
 2020.10.12 23:01:27 INFO  time: initialize in 4.34s
 2020.10.12 23:01:31 WARN  no build tool detected in workspace 'C:\Users\Pawel\code\wesbos\react forum\forum-frontend'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
 2020.10.13 00:06:28 INFO  shutting down Metals
+2020.10.13 12:01:23 INFO  started: Metals version 0.9.4 in workspace 'C:\Users\Pawel\code\wesbos\react forum\forum-frontend' for client vscode.
+2020.10.13 12:01:24 INFO  time: initialize in 0.91s
+2020.10.13 12:01:25 WARN  no build tool detected in workspace 'C:\Users\Pawel\code\wesbos\react forum\forum-frontend'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. 
