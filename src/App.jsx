@@ -5,13 +5,14 @@ import colors from "./utils/colors";
 import { Router } from "@reach/router";
 import MainPage from "./pages/MainPage";
 import TopicPage from "./pages/TopicPage";
+import { rules } from "./utils/rules";
 
 const Main = styled.main`
   min-height: 100%;
-  width: 100%;
+  min-width: 100%;
   display: flex;
   flex-direction: column;
-  background: ${colors.light_gray};
+  background: ${colors.gray};
 `;
 
 const App = () => {
@@ -20,19 +21,9 @@ const App = () => {
       <Header title="Forum" />
       <Router>
         <MainPage path="/" />
-        <Paths path="topics" content="TOPICS" />
-        <Paths path="popular" content="POPULAR" />
-        <TopicPage path="topics/:topicId" />
+        <TopicPage path="topics/:topicId" rules={rules} />
       </Router>
     </Main>
-  );
-};
-
-const Paths = ({ content }) => {
-  return (
-    <>
-      <div>{content}</div>
-    </>
   );
 };
 

@@ -7,7 +7,7 @@ import StyledLink from "../StyledLink/StyledLink";
 const Wrapper = styled.div`
   border-radius: 1em;
   overflow: hidden;
-  box-shadow: 1px 1px 2px ${colors.gray};
+  box-shadow: 1px 0 0.5px ${colors.shadow};
 `;
 
 const Header = styled.div`
@@ -20,7 +20,7 @@ const Header = styled.div`
 const Container = ({ title, children, to }) => (
   <Wrapper>
     <Header>
-      {title ? (
+      {title && to ? (
         <StyledLink color={colors.white} to={to}>
           {title}
         </StyledLink>

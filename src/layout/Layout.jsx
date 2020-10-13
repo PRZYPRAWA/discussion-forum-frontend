@@ -4,7 +4,6 @@ export const Body = styled.div`
   display: flex;
   padding: 1em;
   flex-grow: 1;
-  width: 100%;
   max-width: 1000px;
   margin: auto;
 `;
@@ -17,6 +16,7 @@ export const Section = styled.div`
 
 export const MainContent = styled(Section)`
   flex-grow: 1;
+  max-width: 600px;
 `;
 
 export const Sidebar = styled(Section)`

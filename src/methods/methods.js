@@ -32,6 +32,18 @@ export const postTopic = (values) => {
     .then((json) => console.log(json));
 };
 
+export const postPost = (values, topicId) => {
+  fetch(`/topics/${topicId}`, {
+    method: "POST",
+    body: JSON.stringify(values),
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  })
+    .then((response) => response.json())
+    .then((json) => console.log(json));
+};
+
 export const getTopicWithPosts = (id) => (
   before = constants.BEFORE,
   after = constants.AFTER,

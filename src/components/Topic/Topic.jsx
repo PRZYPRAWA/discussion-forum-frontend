@@ -5,20 +5,22 @@ import colors from "../../utils/colors";
 import formatDate from "../../utils/formatDate";
 import StyledLink from "../StyledLink/StyledLink";
 
+const StyledParagraph = styled.p`
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+`;
+
 const StyledTopic = styled.li`
-  background: ${colors.very_light_gray};
+  background: ${colors.light_gray};
   flex-grow: 1;
   text-decoration: none;
   list-style-type: none;
-  height: 3em;
+  min-height: 3em;
   border-top 1.5px solid ${colors.gray};
   padding: 1% 2%;
   position: relative;
   transition: .2s ease;
-
-  :hover {
-    background: ${colors.light_gray};
-  }
 
   @media (max-width: 600px) {
     height: 4em;
@@ -26,7 +28,7 @@ const StyledTopic = styled.li`
 `;
 
 const Author = styled.div`
-  margin-top: 0.5%;
+  margin: 0.5% 0;
   font-size: 0.8em;
 `;
 
@@ -58,7 +60,7 @@ const Topic = ({
   return (
     <StyledTopic>
       <StyledLink color={colors.dark} to={`/topics/${topicId}`}>
-        {topic}
+        <StyledParagraph>{topic}</StyledParagraph>
       </StyledLink>
       <Author>{shrink || `By ${createdBy}, ${formatDate(created)}`}</Author>
       {lastResponse && (

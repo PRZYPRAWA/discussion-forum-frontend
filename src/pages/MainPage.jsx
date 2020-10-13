@@ -3,22 +3,32 @@ import Container from "../components/Container/Container";
 import AddTopicForm from "../components/AddTopicForm/AddTopicForm";
 import StyledList from "../components/List/List";
 import Topic from "../components/Topic/Topic";
+import Button from "../components/Button/Button";
 import Error from "../components/Error/Error";
 import Loading from "../components/Loading/Loading";
+import styled from "styled-components";
 import { getTopics } from "../methods/methods";
 import { Body, MainContent, Sidebar } from "../layout/Layout";
+
+const StyledButton = styled(Button)`
+  width: 10em;
+`;
 
 const MainPage = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [posted, setPosted] = useState(false);
+  const [loadTopics, setLoadTopics] = useState(false);
 
   useEffect(() => {
     getTopics()(setItems, setIsLoaded, setError);
-  }, [posted]);
+    console.log(loadTopics);
+    if (loadTopics) {
+    }
+  }, [posted, loadTopics]);
 
-  const renderTopics = (shrink = false, offset = 0, sort = false) => {
+  const renderTopics = (shrink = false, sort = false) => {
     function compare(a, b) {
       return b.created - a.created;
     }
@@ -32,7 +42,6 @@ const MainPage = () => {
         <StyledList>
           {items
             .sort((a, b) => (sort ? compare(a, b) : 0))
-            .slice(offset, offset + 10)
             .map((item) => (
               <Topic
                 key={item.id}
@@ -53,14 +62,13 @@ const MainPage = () => {
     <Body>
       <MainContent>
         <AddTopicForm posted={posted} setPosted={setPosted} />
-        <Container title="Topics" to="/topics">
-          {renderTopics()}
-        </Container>
+        <Container title="Topics">{renderTopics((false, true))}</Container>
+        <StyledButton onClick={() => setLoadTopics(!loadTopics)}>
+          Load more
+        </StyledButton>
       </MainContent>
       <Sidebar>
-        <Container title="Popular" to="/popular">
-          {renderTopics(true)}
-        </Container>
+        <Container title="Popular">{renderTopics(true)}</Container>
       </Sidebar>
     </Body>
   );

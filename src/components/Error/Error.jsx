@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "../../utils/colors";
 
 const Error = styled.div`
-  background: ${colors.very_light_gray};
+  background: ${colors.light_gray};
   flex-grow: 1;
   height: 3em;
   border-top 1.5px solid ${colors.gray};

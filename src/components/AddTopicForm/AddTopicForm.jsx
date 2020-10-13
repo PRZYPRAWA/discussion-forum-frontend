@@ -10,7 +10,7 @@ import { postTopic } from "../../methods/methods";
 import { constants } from "../../constants/constants";
 
 const StyledForm = styled(Form)`
-  background: ${colors.very_light_gray};
+  background: ${colors.light_gray};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
